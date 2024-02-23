@@ -22,6 +22,7 @@ class GameFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_game, container, false)
 
         btnBack = view.findViewById(R.id.btnBack)
+        txtTurn = view.findViewById(R.id.txtTurn)
 
         return view
     }
@@ -29,15 +30,15 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if(arguments != null){
-//            val playerName = GameFragmentArgs.fromBundle(requireArguments()).playerName
-//            txtTurn.text = "$playerName's Turn"
-//        }
-
-        arguments?.let {
+        if(arguments != null){
             val playerName = GameFragmentArgs.fromBundle(requireArguments()).playerName
             txtTurn.text = "$playerName's Turn"
         }
+
+//        arguments?.let {
+//            val playerName = GameFragmentArgs.fromBundle(requireArguments()).playerName
+//            txtTurn.text = "$playerName's Turn"
+//        }
 
         btnBack.setOnClickListener {
             val action = GameFragmentDirections.actionMainFragment()
