@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.Navigation
 
 class GameFragment : Fragment() {
     private lateinit var view: View;
     private lateinit var btnBack: Button;
+    private lateinit var txtTurn: TextView;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,13 +21,23 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_game, container, false)
 
-        btnBack = view.findViewById(R.id.btnStart)
+        btnBack = view.findViewById(R.id.btnBack)
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        if(arguments != null){
+//            val playerName = GameFragmentArgs.fromBundle(requireArguments()).playerName
+//            txtTurn.text = "$playerName's Turn"
+//        }
+
+        arguments?.let {
+            val playerName = GameFragmentArgs.fromBundle(requireArguments()).playerName
+            txtTurn.text = "$playerName's Turn"
+        }
 
         btnBack.setOnClickListener {
             val action = GameFragmentDirections.actionMainFragment()

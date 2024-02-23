@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 
 class MainFragment : Fragment() {
     private lateinit var view: View;
     private lateinit var btnStart: Button;
+    private lateinit var txtName: TextInputEditText;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,6 +23,7 @@ class MainFragment : Fragment() {
         view = inflater.inflate(R.layout.fragment_main, container, false)
 
         btnStart = view.findViewById(R.id.btnStart)
+        txtName = view.findViewById(R.id.txtName)
 
         return view
     }
@@ -28,7 +32,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnStart.setOnClickListener {
-            val action = MainFragmentDirections.actionGameFragment()
+            val playerName = txtName.text.toString()
+            val action = MainFragmentDirections.actionGameFragment(playerName)
             Navigation.findNavController(it).navigate(action)
         }
     }
