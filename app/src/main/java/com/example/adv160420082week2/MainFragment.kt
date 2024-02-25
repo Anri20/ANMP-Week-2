@@ -15,6 +15,7 @@ class MainFragment : Fragment() {
     private lateinit var view: View;
     private lateinit var btnStart: Button;
     private lateinit var txtName: TextInputEditText;
+    private lateinit var btnOption: Button;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +26,7 @@ class MainFragment : Fragment() {
 
         btnStart = view.findViewById(R.id.btnStart)
         txtName = view.findViewById(R.id.txtName)
+        btnOption = view.findViewById(R.id.btnOption)
 
         return view
     }
@@ -35,6 +37,12 @@ class MainFragment : Fragment() {
         btnStart.setOnClickListener {
             val playerName = txtName.text.toString()
             val action = MainFragmentDirections.actionGameFragment(playerName)
+            Navigation.findNavController(it).navigate(action)
+        }
+
+//        untuk memunculkan dialog
+        btnOption.setOnClickListener {
+            val action = MainFragmentDirections.actionOptionFragment()
             Navigation.findNavController(it).navigate(action)
         }
     }
